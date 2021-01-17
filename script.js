@@ -1,6 +1,11 @@
-var map = document.getElementById("svg4");
-map.setAttribute("width",  window.innerWidth);
-map.setAttribute("height", window.innerHeight);
+let map = document.getElementById("svg4");
+map.setAttribute("width",  (window.innerWidth * 0.8));
+map.setAttribute("height", (window.innerHeight * 0.8));
+
+window.addEventListener('resize', () => {
+    map.setAttribute("width",  (window.innerWidth * 0.8));
+    map.setAttribute("height", (window.innerHeight * 0.8));
+});
 
 const states = [
   'Alabama',
