@@ -1,11 +1,11 @@
 body {
   font-family: sans-serif;
-  background-color: #FFFFFF;
+  background-color: #fff;
   text-align: center;
 }
 .state {
   font-size: 5px;
 }
-svg {
-
+#usa {
+  fill: #3d3;
 }
