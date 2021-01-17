@@ -1,3 +1,7 @@
+var map = document.getElementById("svg4");
+map.setAttribute("width",  window.innerWidth);
+map.setAttribute("height", window.innerHeight);
+
 const states = [
   'Alabama',
   'Alaska',
@@ -57,6 +61,7 @@ let score = 0;
 const scoreboard = document.getElementById('score-display');
 const input = document.getElementById('input-word');
 
+
 function start() {
     isPlaying = true;
     input.value = '';
@@ -65,9 +70,12 @@ function start() {
 
 function check() {
     let match = false;
+    let state;
     for (let i = 0; i < states.length && !match; i++) {
-        if (states[i] === input.value) {
+        if (states[i].toLowerCase() === input.value.toLowerCase()) {
             match = true;
+            state = document.getElementById(states[i].toLowerCase());
+            state.innerHTML = states[i];
         }
     }
     return match;
