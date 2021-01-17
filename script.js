@@ -61,7 +61,6 @@ let score = 0;
 const scoreboard = document.getElementById('score-display');
 const input = document.getElementById('input-word');
 
-
 function start() {
     isPlaying = true;
     input.value = '';
@@ -87,12 +86,22 @@ function loop() {
         input.value = '';
         score++;
     }
+    if (!isPlaying) {
+        finish();
+    }
     scoreboard.innerHTML = score;
 }
 
 function finish() {
+    isPlaying = false;
     if (!isPlaying) {
         console.log('game over');
         score = 0;
-    } 
+        let state;
+        for (let i = 0; i < states.length; i++) {
+            state = document.getElementById(states[i].toLowerCase());
+            state.innerHTML = '';
+        }
+        scoreboard.innerHTML = score;
+    }
 }
