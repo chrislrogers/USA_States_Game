@@ -68,11 +68,34 @@ let score = 0;
 
 const scoreboard = document.getElementById('score-display');
 const input = document.getElementById('input-word');
+const timer = document.getElementById('timer');
+const winner = document.getElementById('winner');
+
+const timeLimit = 10; //time to complete in minutes
+let time = timeLimit * 60;
+let timerInterval;
 
 function start() {
     isPlaying = true;
+    score = 0;
     input.value = '';
+    winner.innerHTML = '';
     input.addEventListener('input', loop);
+    timerInterval = setInterval(getTime, 1000);
+}
+
+function getTime() {
+    let minutes = Math.floor(time/60);
+    let seconds = time % 60;
+    if (seconds < 10) {
+        seconds = "0" + seconds;
+    }
+    if (seconds === "00" && minutes === 0) {
+        winner.innerHTML = "TIME OVER!";
+        finish();
+    }
+    time--;
+    timer.innerHTML = minutes + "." + seconds;
 }
 
 function check() {
@@ -105,19 +128,23 @@ function loop() {
         finish();
     }
     scoreboard.innerHTML = score;
+    if (score === 50) {
+        winner.innerHTML = "YOU WIN!";
+        finish();
+    }
 }
 
 function finish() {
     isPlaying = false;
+    clearInterval(timerInterval);
+    time = timeLimit * 60;
     if (!isPlaying) {
         console.log('game over');
-        score = 0;
         let state;
         for (let i = 0; i < states.length; i++) {
             state = document.getElementById(states[i].toLowerCase());
             state.innerHTML = '';
         }
         statesCopy = [...states];
-        scoreboard.innerHTML = score;
     }
 }

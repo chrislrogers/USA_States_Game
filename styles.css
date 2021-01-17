@@ -9,3 +9,9 @@ body {
 #usa {
   fill: #3d3;
 }
+.info {
+  font-size: 10px;
+}
+#winner {
+  fill: red;
+}
