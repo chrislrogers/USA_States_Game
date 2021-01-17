@@ -60,7 +60,10 @@ const states = [
   'Wyoming'
 ];
 
+let statesCopy = [...states];
+
 let isPlaying = 0;
+let counter = 0;
 let score = 0;
 
 const scoreboard = document.getElementById('score-display');
@@ -75,21 +78,28 @@ function start() {
 function check() {
     let match = false;
     let state;
-    for (let i = 0; i < states.length && !match; i++) {
-        if (states[i].toLowerCase() === input.value.toLowerCase()) {
+    for (let i = 0; i < statesCopy.length && !match; i++) {
+        if (statesCopy[i].toLowerCase() === input.value.toLowerCase()) {
             match = true;
-            state = document.getElementById(states[i].toLowerCase());
-            state.innerHTML = states[i];
+            state = document.getElementById(statesCopy[i].toLowerCase());
+            state.innerHTML = statesCopy[i];
+            statesCopy[i] = "done"; 
         }
     }
     return match;
 }
 
 function loop() {
+    counter = 0;
     if (check()) {
         console.log('match');
         input.value = '';
-        score++;
+        for (let i = 0; i < statesCopy.length; i++) {
+            if (statesCopy[i] === "done") {
+                counter++;
+            }
+        }
+        score = counter;
     }
     if (!isPlaying) {
         finish();
@@ -107,6 +117,7 @@ function finish() {
             state = document.getElementById(states[i].toLowerCase());
             state.innerHTML = '';
         }
+        statesCopy = [...states];
         scoreboard.innerHTML = score;
     }
 }
