@@ -5,13 +5,20 @@ body {
 }
 .state {
   font-size: 5px;
+  font-weight: bold;
 }
 #usa {
-  fill: #3d3;
+  fill: #70de6e;
 }
 .info {
   font-size: 10px;
 }
 #winner {
-  fill: red;
+  fill: #194c87;
+  stroke: black;
+  font-weight: bold;
+  stroke-width: 0.5;
+}
+#missed {
+  fill: #ff4242;
 }
