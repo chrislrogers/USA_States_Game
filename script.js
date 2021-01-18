@@ -137,10 +137,9 @@ function loop() {
 }
 
 function finish() {
-    isPlaying = false;
-    clearInterval(timerInterval);
-    time = timeLimit * 60;
     if (!isPlaying) {
+        clearInterval(timerInterval);
+        time = timeLimit * 60;
         console.log('game over');
         let state;
         for (let i = 0; i < states.length; i++) {
