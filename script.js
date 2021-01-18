@@ -163,6 +163,13 @@ function finish() {
     if (!isPlaying) {
         clearInterval(timerInterval);
         console.log('game over');
+        let state;
+        for (let i = 0; i < statesCopy.length; i++) {
+            if (statesCopy[i].toLowerCase() !== "done") {
+                state = document.getElementById(statesCopy[i].toLowerCase());
+                state.innerHTML = "<tspan style='fill: red;'>" + statesCopy[i] + "</tspan>";
+            }
+        }
         statesCopy = [...states];
     }
 }
