@@ -77,13 +77,26 @@ let timerInterval;
 
 function start() {
     isPlaying = true;
-    timeLimit = document.querySelector('input[name="difficulty"]:checked').value;
-    time = timeLimit * 60;
     score = 0;
+    scoreboard.innerHTML = score;
+
+    let state;
+    for (let i = 0; i < states.length; i++) {
+        state = document.getElementById(states[i].toLowerCase());
+        state.innerHTML = '';
+    }
     input.value = '';
     winner.innerHTML = '';
+    
+    timeLimit = document.querySelector('input[name="difficulty"]:checked').value;
+    time = timeLimit * 60;
+
     input.addEventListener('input', update);
     timerInterval = setInterval(getTime, 1000);
+}
+
+function stop() {
+    isPlaying = false;
 }
 
 function getTime() {
@@ -94,7 +107,12 @@ function getTime() {
     }
     if (seconds === "00" && minutes === 0) {
         winner.innerHTML = "TIME OVER!";
+        isPlaying = false;
         finish();
+    } else {
+        if (!isPlaying) {
+            finish();
+        }
     }
     time--;
     timer.innerHTML = minutes + "." + seconds;
@@ -103,13 +121,15 @@ function getTime() {
 function check() {
     let match = false;
     let state;
-    for (let i = 0; i < statesCopy.length && !match; i++) {
-        if (statesCopy[i].toLowerCase() === input.value.toLowerCase()) {
-            match = true;
-            state = document.getElementById(statesCopy[i].toLowerCase());
-            state.innerHTML = statesCopy[i];
-            statesCopy[i] = "done"; 
-        }
+    if ("done" !== input.value.toLowerCase()) {
+        for (let i = 0; i < statesCopy.length && !match; i++) {
+           if (statesCopy[i].toLowerCase() === input.value.toLowerCase()) {
+               match = true;
+               state = document.getElementById(statesCopy[i].toLowerCase());
+               state.innerHTML = statesCopy[i];
+               statesCopy[i] = "done"; 
+           }
+       }
     }
     return match;
 }
@@ -126,12 +146,10 @@ function update() {
         }
         score = counter;
     }
-    if (!isPlaying) {
-        finish();
-    }
     scoreboard.innerHTML = score;
     if (score === 50) {
         winner.innerHTML = "YOU WIN!";
+        isPlaying = false;
         finish();
     }
 }
@@ -141,11 +159,6 @@ function finish() {
         clearInterval(timerInterval);
         time = timeLimit * 60;
         console.log('game over');
-        let state;
-        for (let i = 0; i < states.length; i++) {
-            state = document.getElementById(states[i].toLowerCase());
-            state.innerHTML = '';
-        }
         statesCopy = [...states];
     }
 }
