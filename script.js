@@ -71,12 +71,14 @@ const input = document.getElementById('input-word');
 const timer = document.getElementById('timer');
 const winner = document.getElementById('winner');
 
-const timeLimit = 10; //time to complete in minutes
-let time = timeLimit * 60;
+let timeLimit = 10; //time to complete in minutes
+let time;
 let timerInterval;
 
 function start() {
     isPlaying = true;
+    timeLimit = document.querySelector('input[name="difficulty"]:checked').value;
+    time = timeLimit * 60;
     score = 0;
     input.value = '';
     winner.innerHTML = '';
