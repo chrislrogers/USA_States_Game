@@ -82,7 +82,7 @@ function start() {
     score = 0;
     input.value = '';
     winner.innerHTML = '';
-    input.addEventListener('input', loop);
+    input.addEventListener('input', update);
     timerInterval = setInterval(getTime, 1000);
 }
 
@@ -114,7 +114,7 @@ function check() {
     return match;
 }
 
-function loop() {
+function update() {
     counter = 0;
     if (check()) {
         console.log('match');
