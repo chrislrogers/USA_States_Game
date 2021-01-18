@@ -128,13 +128,13 @@ function check() {
     let state;
     if ("done" !== input.value.toLowerCase()) {
         for (let i = 0; i < statesCopy.length && !match; i++) {
-           if (statesCopy[i].toLowerCase() === input.value.toLowerCase()) {
-               match = true;
-               state = document.getElementById(statesCopy[i].toLowerCase());
-               state.innerHTML = statesCopy[i];
-               statesCopy[i] = "done"; 
-           }
-       }
+            if (statesCopy[i].toLowerCase() === input.value.toLowerCase()) {
+                match = true;
+                state = document.getElementById(statesCopy[i].toLowerCase());
+                state.innerHTML = statesCopy[i];
+                statesCopy[i] = "done"; 
+            }
+        }
     }
     return match;
 }
@@ -162,7 +162,6 @@ function update() {
 function finish() {
     if (!isPlaying) {
         clearInterval(timerInterval);
-        time = timeLimit * 60;
         console.log('game over');
         statesCopy = [...states];
     }
