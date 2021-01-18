@@ -76,23 +76,28 @@ let time;
 let timerInterval;
 
 function start() {
-    isPlaying = true;
-    score = 0;
-    scoreboard.innerHTML = score;
-
-    let state;
-    for (let i = 0; i < states.length; i++) {
-        state = document.getElementById(states[i].toLowerCase());
-        state.innerHTML = '';
-    }
-    input.value = '';
-    winner.innerHTML = '';
+    if (!isPlaying) {
+        score = 0;
+        scoreboard.innerHTML = score;
     
-    timeLimit = document.querySelector('input[name="difficulty"]:checked').value;
-    time = timeLimit * 60;
+        let state;
+        for (let i = 0; i < states.length; i++) {
+            state = document.getElementById(states[i].toLowerCase());
+            state.innerHTML = '';
+        }
+        input.value = '';
+        winner.innerHTML = '';
+        
+        timeLimit = document.querySelector('input[name="difficulty"]:checked').value;
+        time = timeLimit * 60;
 
-    input.addEventListener('input', update);
-    timerInterval = setInterval(getTime, 1000);
+        input.addEventListener('input', update);
+        timerInterval = setInterval(getTime, 1000);
+
+        isPlaying = true;
+    } else {
+        console.log("game has already started");
+    }
 }
 
 function stop() {
