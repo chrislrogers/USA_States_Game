@@ -70,6 +70,11 @@ const scoreboard = document.getElementById('score-display');
 const input = document.getElementById('input-word');
 const timer = document.getElementById('timer');
 const winner = document.getElementById('winner');
+const percentBar = document.getElementById("top");
+
+const circumference = percentBar.r.baseVal.value * 2 * Math.PI;
+
+percentBar.style.strokeDasharray = circumference;
 
 let timeLimit = 10; //time to complete in minutes
 let time;
@@ -77,6 +82,7 @@ let timerInterval;
 
 function start() {
     if (!isPlaying) {
+        draw(0, percentBar);
         score = 0;
         scoreboard.innerHTML = score;
     
@@ -126,9 +132,10 @@ function getTime() {
 function check() {
     let match = false;
     let state;
-    if ("done" !== input.value.toLowerCase()) {
+    let str = input.value.toLowerCase().trim();
+    if ("done" !== str) {
         for (let i = 0; i < statesCopy.length && !match; i++) {
-            if (statesCopy[i].toLowerCase() === input.value.toLowerCase()) {
+            if (statesCopy[i].toLowerCase() === str) {
                 match = true;
                 state = document.getElementById(statesCopy[i].toLowerCase());
                 state.innerHTML = statesCopy[i];
@@ -152,11 +159,21 @@ function update() {
         score = counter;
     }
     scoreboard.innerHTML = score;
+    draw(percent(50,score), percentBar);
     if (score === 50) {
         winner.innerHTML = "YOU WIN!";
         isPlaying = false;
         finish();
     }
+}
+
+function draw(percentage, name) {
+    name.style.strokeDashoffset = circumference - (percentage / 100) * circumference;
+}
+
+function percent(num, per) {
+    let sum = ((per/num) * 100);
+    return sum.toFixed(0)
 }
 
 function finish() {

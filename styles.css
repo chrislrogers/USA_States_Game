@@ -11,14 +11,29 @@ body {
   fill: #70de6e;
 }
 .info {
-  font-size: 10px;
+  font-size: 8px;
 }
 #winner {
-  fill: #194c87;
+  fill: #21d8d6;
   stroke: black;
   font-weight: bold;
   stroke-width: 0.5;
 }
 #missed {
   fill: #ff4242;
+}
+.bottom {
+  stroke: #9b9dad;
+  stroke-width: 1;
+  fill: none;
+}
+.top {
+  stroke: #21d8d6;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  fill: none;
+}
+.score {
+  font-size: 10px;
+  text-anchor: middle;
 }
