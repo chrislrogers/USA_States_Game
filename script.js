@@ -1,63 +1,63 @@
 let map = document.getElementById("svg4");
-map.setAttribute("width",  (window.innerWidth * 0.8));
+map.setAttribute("width", (window.innerWidth * 0.8));
 map.setAttribute("height", (window.innerHeight * 0.8));
 
 window.addEventListener('resize', () => {
-    map.setAttribute("width",  (window.innerWidth * 0.8));
+    map.setAttribute("width", (window.innerWidth * 0.8));
     map.setAttribute("height", (window.innerHeight * 0.8));
 });
 
 const states = [
-  'Alabama',
-  'Alaska',
-  'Arizona',
-  'Arkansas',
-  'California',
-  'Colorado',
-  'Connecticut',
-  'Delaware',
-  'Florida',
-  'Georgia',
-  'Hawaii',
-  'Idaho',
-  'Illinois',
-  'Indiana',
-  'Iowa',
-  'Kansas',
-  'Kentucky',
-  'Louisiana',
-  'Maine',
-  'Maryland',
-  'Massachusetts',
-  'Michigan',
-  'Minnesota',
-  'Mississippi',
-  'Missouri',
-  'Montana',
-  'Nebraska',
-  'Nevada',
-  'New Hampshire',
-  'New Jersey',
-  'New Mexico',
-  'New York',
-  'North Carolina',
-  'North Dakota',
-  'Ohio',
-  'Oklahoma',
-  'Oregon',
-  'Pennsylvania',
-  'Rhode Island',
-  'South Carolina',
-  'South Dakota',
-  'Tennessee',
-  'Texas',
-  'Utah',
-  'Vermont',
-  'Virginia',
-  'Washington',
-  'West Virginia',
-  'Wisconsin',
-  'Wyoming'
+    'Alabama',
+    'Alaska',
+    'Arizona',
+    'Arkansas',
+    'California',
+    'Colorado',
+    'Connecticut',
+    'Delaware',
+    'Florida',
+    'Georgia',
+    'Hawaii',
+    'Idaho',
+    'Illinois',
+    'Indiana',
+    'Iowa',
+    'Kansas',
+    'Kentucky',
+    'Louisiana',
+    'Maine',
+    'Maryland',
+    'Massachusetts',
+    'Michigan',
+    'Minnesota',
+    'Mississippi',
+    'Missouri',
+    'Montana',
+    'Nebraska',
+    'Nevada',
+    'New Hampshire',
+    'New Jersey',
+    'New Mexico',
+    'New York',
+    'North Carolina',
+    'North Dakota',
+    'Ohio',
+    'Oklahoma',
+    'Oregon',
+    'Pennsylvania',
+    'Rhode Island',
+    'South Carolina',
+    'South Dakota',
+    'Tennessee',
+    'Texas',
+    'Utah',
+    'Vermont',
+    'Virginia',
+    'Washington',
+    'West Virginia',
+    'Wisconsin',
+    'Wyoming'
 ];
 
 let statesCopy = [...states];
@@ -85,7 +85,7 @@ function start() {
         draw(0, percentBar);
         score = 0;
         scoreboard.innerHTML = score;
-    
+
         let state;
         for (let i = 0; i < states.length; i++) {
             state = document.getElementById(states[i].toLowerCase());
@@ -93,7 +93,7 @@ function start() {
         }
         input.value = '';
         winner.innerHTML = '';
-        
+
         timeLimit = document.querySelector('input[name="difficulty"]:checked').value;
         time = timeLimit * 60;
 
@@ -111,7 +111,7 @@ function stop() {
 }
 
 function getTime() {
-    let minutes = Math.floor(time/60);
+    let minutes = Math.floor(time / 60);
     let seconds = time % 60;
     if (seconds < 10) {
         seconds = "0" + seconds;
@@ -139,7 +139,7 @@ function check() {
                 match = true;
                 state = document.getElementById(statesCopy[i].toLowerCase());
                 state.innerHTML = statesCopy[i];
-                statesCopy[i] = "done"; 
+                statesCopy[i] = "done";
             }
         }
     }
@@ -159,7 +159,7 @@ function update() {
         score = counter;
     }
     scoreboard.innerHTML = score;
-    draw(percent(50,score), percentBar);
+    draw(percent(50, score), percentBar);
     if (score === 50) {
         winner.innerHTML = "YOU WIN!";
         isPlaying = false;
@@ -172,7 +172,7 @@ function draw(percentage, name) {
 }
 
 function percent(num, per) {
-    let sum = ((per/num) * 100);
+    let sum = ((per / num) * 100);
     return sum.toFixed(0)
 }
 
