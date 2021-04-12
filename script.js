@@ -106,10 +106,6 @@ function start() {
     }
 }
 
-function stop() {
-    isPlaying = false;
-}
-
 function getTime() {
     let minutes = Math.floor(time / 60);
     let seconds = time % 60;
