@@ -81,6 +81,7 @@ let time;
 let timerInterval;
 
 function start() {
+    // called by start button
     if (!isPlaying) {
         draw(0, percentBar);
         score = 0;
@@ -107,6 +108,7 @@ function start() {
 }
 
 function stop() {
+    // called by stop button
     isPlaying = false;
 }
 
